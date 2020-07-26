@@ -1,12 +1,14 @@
 const express = require('express');
 const port = 3000;
 const body_parser = require('body-parser');
-
+const app = express();
 
 try {
-  const config = {};
+  const config = {
+    "env": process.env.NODE_ENV
+  };
   const logger = {};
-  const app = express();
+
   const routes = require('./routes')(config, logger);
   // Add middle wears
   app.use(body_parser.json());
@@ -26,3 +28,4 @@ try {
 } catch (err) {
   console.log('Error while starting the APP', err)
 }
+module.exports = app;

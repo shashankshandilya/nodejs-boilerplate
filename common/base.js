@@ -4,7 +4,9 @@ class Base {
     this.logger = logger;
   }
   _debug(message) {
-    console.log(message);
+    if (this.config.env != 'test') {
+      console.log(message);
+    }
   }
 }
 module.exports = Base;
