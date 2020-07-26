@@ -13,7 +13,7 @@ class BaseControler extends Base {
   }
 
   validate_request() {
-    try {
+    {
       if (this.schema === false) {
         return true;
       }
@@ -32,14 +32,6 @@ class BaseControler extends Base {
         return false;
       }
 
-    } catch (err) {
-      this.response_code = 400;
-      this.response_data = err;
-      this._debug({
-        message: "Validate request exception catched",
-        err: err
-      });
-      return false;
     }
     return true;
   }

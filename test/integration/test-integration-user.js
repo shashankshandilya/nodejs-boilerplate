@@ -3,6 +3,7 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../../app');
 let should = chai.should();
+let expect = chai.expect;
 
 chai.use(chaiHttp);
 
@@ -35,4 +36,23 @@ describe('/POST user', () => {
     });
   });
 
+});
+
+describe('/GET user', () => {
+  it('it should fail validation', (done) => {
+    chai.request(server).get('/api/v1/user').end((err, res) => {
+      expect(err).to.be.null;
+      expect(res).to.have.status(400);
+      done();
+    });
+  });
+  it('it should pass validation', (done) => {
+    chai.request(server).get('/api/v1/user').query({
+      name: "shashank"
+    }).end((err, res) => {
+      expect(err).to.be.null;
+      expect(res).to.have.status(200);
+      done();
+    });
+  });
 });

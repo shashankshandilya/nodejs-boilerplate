@@ -6,15 +6,14 @@ class User extends BaseController {
     super(config, req, res, logger, schema)
   }
   async post() {
-    try {
-      this.response_data = {
-        message: `welcome ${this.req.body.name}`
-      }
-    } catch (error) {
-      this.response_code = 400;
-      this.response_data = {
-        err: err
-      }
+    this.response_data = {
+      message: `welcome ${this.req.body.name}`
+    }
+  }
+  async get() {
+    this.response_data = {
+      name: this.req.body.name,
+      age: 23
     }
   }
 }
