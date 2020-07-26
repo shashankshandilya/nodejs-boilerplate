@@ -37,39 +37,35 @@ class BaseControler extends Base {
   }
 
   async procees_request() {
-    try {
 
-      if (this.req.method === 'GET') {
-        if (this.req.query) {
-          this.req.body = this.req.query
-        }
+    if (this.req.method === 'GET') {
+      if (this.req.query) {
+        this.req.body = this.req.query
       }
-
-      this._debug({
-        message: 'In proceesRequest:: Processing Request',
-        method: this.req.method,
-        body: this.req.body,
-        query: this.req.query
-      });
-
-      if (true === this.validate_request()) {
-        switch (this.req.method) {
-          case 'GET':
-            await this.get();
-
-            break;
-          case 'POST':
-            await this.post();
-            break;
-          case 'PUT':
-            await this.post();
-            break;
-        }
-      }
-    } catch (err) {
-      this.response_code = 500;
-      this.response_data = err;
     }
+
+    this._debug({
+      message: 'In proceesRequest:: Processing Request',
+      method: this.req.method,
+      body: this.req.body,
+      query: this.req.query
+    });
+
+    if (true === this.validate_request()) {
+      switch (this.req.method) {
+        case 'GET':
+          await this.get();
+
+          break;
+        case 'POST':
+          await this.post();
+          break;
+          // case 'PUT':
+          //   await this.post();
+          //   break;
+      }
+    }
+
     this.send_response();
   }
 
