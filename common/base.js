@@ -8,5 +8,8 @@ class Base {
       console.log(message);
     }
   }
+  _sum(a, b) {
+    return a + b;
+  }
 }
 module.exports = Base;
